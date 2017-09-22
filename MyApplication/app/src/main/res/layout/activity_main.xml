@@ -42,10 +42,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:text="Button"
+        android:layout_marginLeft="-3dp"
+        android:text="ボタン"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@+id/button4"
-        android:layout_marginLeft="0dp" />
+        app:layout_constraintLeft_toRightOf="@+id/button4" />
 
     <Button
         android:id="@+id/button6"
