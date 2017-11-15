@@ -17,7 +17,7 @@ import java.util.Locale;
 import io.realm.Realm;
 
 public class MainActivity extends AppCompatActivity
-        implements DiaryListFragment.OnFragmentInteractionListener{
+        implements DiaryListFragment.OnFragmentInteractionListener {
 
     private Realm mRealm;
 
@@ -37,19 +37,19 @@ public class MainActivity extends AppCompatActivity
 
 
     @Override
-    protected void onDestroy(){
+    protected void onDestroy() {
         super.onDestroy();
         mRealm.close();
     }
 
-    private void createTestData(){
-        mRealm.executeTransaction(new Realm.Transaction(){
+    private void createTestData() {
+        mRealm.executeTransaction(new Realm.Transaction() {
             @Override
-            public void execute(Realm realm){
-                Number maxId = mRealm.where(Diary.class) .max("id");
+            public void execute(Realm realm) {
+                Number maxId = mRealm.where(Diary.class).max("id");
                 long nextId = 0;
-                if(maxId != null) nextId = maxId.longValue() + 1;
-                Diary diary = realm.createObject(Diary.class,new Long(nextId));
+                if (maxId != null) nextId = maxId.longValue() + 1;
+                Diary diary = realm.createObject(Diary.class, new Long(nextId));
                 diary.title = "テストタイトル";
                 diary.bodyText = "テスト本文です。";
                 diary.date = "Fab 22";
@@ -57,39 +57,40 @@ public class MainActivity extends AppCompatActivity
         });
     }
 
-    private void showDiaryList(){
+    private void showDiaryList() {
         FragmentManager manager = getSupportFragmentManager();
         Fragment fragment = manager.findFragmentByTag("DiaryListFragment");
-        if(fragment == null){
+        if (fragment == null) {
             fragment = new DiaryListFragment();
             FragmentTransaction transaction = manager.beginTransaction();
-            transaction.add(R.id.content,fragment, "DiaryListFragment");
+            transaction.add(R.id.content, fragment, "DiaryListFragment");
             transaction.commit();
 
         }
     }
 
-    public void onHeightButtonTapped(View view){
-        Intent intent = new Intent(this,HeightActivity.class);
+    public void onHeightButtonTapped(View view) {
+        Intent intent = new Intent(this, HeightActivity.class);
         startActivity(intent);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
-    public void onAddDiarySelected(){
-        mRealm .beginTransaction();
+    public void onAddDiarySelected() {
+        mRealm.beginTransaction();
         Number maxId = mRealm.where(Diary.class).max("id");
-        long nextId =0;
-        if(maxId != null)nextId = maxId.longValue() +1;
-        Diary diary = mRealm.createObject(Diary.class,new Long(nextId));
+        long nextId = 0;
+        if (maxId != null) nextId = maxId.longValue() + 1;
+        Diary diary = mRealm.createObject(Diary.class, new Long(nextId));
         diary.date = new SimpleDateFormat("MMM d", Locale.US).format(new Date());
         mRealm.commitTransaction();
 
         InputDiaryFragment inputDiaryFragment = InputDiaryFragment.newInstance(nextId);
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(R.id.content,inputDiaryFragment,"InputDiaryFragment");
+        transaction.replace(R.id.content, inputDiaryFragment, "InputDiaryFragment");
         transaction.addToBackStack(null);
         transaction.commit();
 
     }
+}
