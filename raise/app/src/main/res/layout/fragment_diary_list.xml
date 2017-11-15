@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.yu_enpit.mydiary.DiaryListFragment">
+    tools:context="com.example.enpit_p3.raise.DiaryListFragment">
 
     <!-- TODO: Update blank fragment layout -->
 

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.yu_enpit.mydiary.HeightActivity">
+    tools:context="com.example.enpit_p3.raise.HeightActivity">
 
     <TextView
         android:id="@+id/textView"
